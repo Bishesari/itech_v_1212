@@ -11,19 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('provinces', function (Blueprint $table) {
             $table->id();
-
-            $table->string('value', 40); // شماره موبایل
-            $table->string('type', 20)->default('mobile');
-            // mobile | email | phone | ...
-
-            $table->boolean('is_verified')->default(false);
+            $table->string('name', 30);          // بوشهر
+            $table->string('slug', 30)->unique(); // bushehr
             $table->boolean('is_active')->default(true);
-
             $table->timestamps();
-
-            $table->unique(['type', 'value']);
         });
     }
 
@@ -32,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('provinces');
     }
 };
